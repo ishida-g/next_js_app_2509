@@ -24,7 +24,9 @@ export async function POST(req) {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT),
     database: process.env.DB_NAME,
+    ssl: { rejectUnauthorized: false }, // ← ここを false 
   });
 
   await connection.execute("INSERT INTO todos (title) VALUES (?)", [title]);
@@ -39,7 +41,9 @@ export async function DELETE(req) {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT),
     database: process.env.DB_NAME,
+    ssl: { rejectUnauthorized: false }, // ← ここを false 
   });
 
   await connection.execute("DELETE FROM todos WHERE id = ?", [id]);
