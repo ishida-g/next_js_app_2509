@@ -7,6 +7,10 @@ export async function GET() {
     password: process.env.DB_PASSWORD,
     port: Number(process.env.DB_PORT),
     database: process.env.DB_NAME,
+    ssl: {
+      ca: process.env.DB_CA_CERT,
+      rejectUnauthorized: true
+    },
   });
 
   const [rows] = await connection.execute("SELECT * FROM items");
