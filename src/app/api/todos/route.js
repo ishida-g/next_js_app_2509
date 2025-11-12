@@ -8,10 +8,7 @@ export async function GET() {
     password: process.env.DB_PASSWORD,
     port: Number(process.env.DB_PORT),
     database: process.env.DB_NAME,
-    ssl: {
-      ca: process.env.DB_CA_CERT,
-      rejectUnauthorized: true
-    },
+    ssl: { rejectUnauthorized: false }, // ← ここを false 
   });
   const [rows] = await connection.execute("SELECT * FROM todos ORDER BY id DESC");
   await connection.end();
